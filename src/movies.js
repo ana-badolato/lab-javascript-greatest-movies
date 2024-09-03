@@ -54,7 +54,8 @@ function scoresAverage(moviesArray) {
   return Math.round(avgScore * 100) / 100;
 }
 
-console.log(scoresAverage(movies));
+//console.log(scoresAverage(movies));
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
 
@@ -65,11 +66,44 @@ function dramaMoviesScore(moviesArray) {
   return scoresAverage(dramaArray);
 }
 
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+//console.log(dramaMoviesScore(movies));
 
+// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(moviesArray) {
+  return moviesArray.toSorted((movie1, movie2) => {
+    if (movie1.year < movie2.year) {
+      return -1;
+    } else if (movie1.year > movie2.year) {
+      return 1;
+    } else {
+      if (movie1.title < movie2.title) {
+        return -1;
+      } else if (movie1.title > movie2.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+}
+
+//console.log(orderByYear(movies));
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  let titlesArray = moviesArray.map((eachMovie) => {
+    return eachMovie.title;
+  });
+  let sortedTitlesArray = titlesArray.toSorted((movie1, movie2) => {
+    if (movie1 < movie2) {
+      return -1;
+    } else if (movie1 > movie2) {
+      return 1;
+    }
+  });
+  return sortedTitlesArray.slice(0,20);
+} 
+
+console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
